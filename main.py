@@ -1,7 +1,7 @@
 import requests
 import time
 
-url = "https://discord.com/api/v9/channels/903164072856547360  /messages"  # Replace with the appropriate channel URL
+url = "https://discord.com/api/v9/channels/903164072856547360/messages"  # Replace with the appropriate channel URL
 image_path = "try.jpg"  # Replace with the path to your image file
 
 header = {
@@ -20,12 +20,11 @@ while True:
 
         r = requests.post(url, headers=header, data=payload, files=files)
         r.raise_for_status()  # Raise an exception if the request was unsuccessful
-        print("Message sent successfully")
-    except requests.exceptions.RequestException as e:
-        print("Error sending message:", str(e))
-        print("Retrying in 1 second...")
-        time.sleep(0)
-        continue
+        # print("Message sent successfully")
+    except requests.exceptions.RequestException:
+        # print("Error sending message:", str(e))
+        # print("Retrying in 1 second...")
+        pass
 
     # Add a delay of 30 seconds before the next iteration
     time.sleep(60)
